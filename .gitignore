@@ -1,3 +1,18 @@
+#YARA executables
+yara64.exe
+yarac64.exe
+
+# executables
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+*.pdb
+
+samples/
+
 # Logs
 logs
 *.log
