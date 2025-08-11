@@ -115,3 +115,30 @@ history_table.pack(side="left", fill="both", expand=True)
 vsb.pack(side="right", fill="y")
 
 root.mainloop() # starts main loop
+
+# -------- FUNCTIONS --------
+
+# function to double make sure the log is read-only
+def set_log_readonly(state: bool):
+    output_box.configure(state="disabled" if state else "normal")
+
+# lines in the output box
+def log_line(text="", tag=None): # the tag is what I created earlier - no colouring
+    set_log_readonly(False)
+    if tag: 
+        output_box.insert(tk.END, text + "\n", tag) # have the text in the output box with a tag
+    else:
+        output_box.insert(tk.END, text + "\n") # otherwise have standard colouring that arent specific
+    set_log_readonly(True) # makes the output box read-only again
+    output_box.see(tk.END) #.see means scrolls to the end of the output box to show the latest log line
+    root.update_idletasks() # updates the GUI to reflect the changes made - called idle tasks because it runs when the GUI is idle
+
+# purely aesthetic function so theres breaklines that can be referenced easily 
+def hr():
+    log_line("-" * 88, "muted") #muted is one of the tags for colours
+
+def heading(text):
+    hr()
+    log_line(f"= {text}", "heading") #heading is a tag so theres colours
+    hr()
+
